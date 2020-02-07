@@ -7,10 +7,55 @@ Original file is located at
     https://colab.research.google.com/drive/1-jast8_Z1PK_gvUMnwOc3k784BYUXlj9
 
 # Listas
+
+valores o items separados por comas entre corchetes. Puede contener items de diferentes tipos, pero usualmente todos sus items son del mismo tipo.
 """
+
+squares = [1,4,9,16,25]
+squares
+
+#acceder a los elementos de la lista
+squares[0] #valor en la primera posición
+
+squares[3]
+
+squares[-1] #valor de la última posición
+
+squares[-3:] #corta la lista y retorna una nueva lista
+
+squares[:] #retorna una copia de la lista original
+
+# Concatenación
+squares + [36,49,64,81,100]
+
+#Cambiar un valor o varios
+squares[1] = 16
+squares
+
+squares[2:4] = [1,0] # no toma en cuenta la última posición
+squares
+
+#remover un elemento o todos los elementos de la lista
+squares[0:1] = []
+squares
+
+squares[:] = []
+squares
 
 lista = [1,'dos',3.2,5]
 lista
+
+"""Es posible crear listas que contienen otras listas"""
+
+a = ['a', 'b', 'c']
+n = [1, 2, 3]
+
+x = [a, n]
+x
+
+x[0] #acceder a la primera lista
+
+x[0][1] #acceder a un elemento de la primera lista
 
 """### 1) `append(x)`
 
@@ -102,7 +147,23 @@ Devuelve una copia superficial de la lista.
 lista2 = lista.copy()
 lista2
 
-"""## EJEMPLO"""
+"""### 12) `len()`
+
+Retorna el tamaño de la lista.
+"""
+
+len(lista)
+
+"""### 13) `max()` and `min()`
+
+Retorna el valor máximo y mínimo respectivamente de una lista númerica.
+"""
+
+max(n)
+
+min(n)
+
+"""### Ejemplo"""
 
 fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
 fruits
@@ -137,3 +198,204 @@ stack.pop()
 stack.pop()
 stack
 
+"""# Funciones
+
+Como ejemplo se creara la función de Fibonacci, recordemos que es una serie que comienza con 0 y 1 y los números siguientes son la suma de los dos anteriores.
+
+0, 1, 1, 2, 3, 5, 8, 13, 21 ...
+"""
+
+#n será el número de parada
+def fibonacci(n):
+  a,b =0,1 #valores iniciales de la serie de fibonacci
+  while a <= n:
+    print(a, end=' ')
+    a, b = b, a+b
+
+fibonacci(2000)
+
+#vamos a retornar la serie en una lista
+def fibonacci_lista(n):
+  resultado = [] #inicializar la lista
+  a,b =0,1 #valores iniciales de la serie de fibonacci
+  while a <= n:
+    resultado.append(a)
+    # resultado = resultado + [a] # es equivalente a lo anterior
+    a, b = b, a+b
+  return resultado
+
+fibonacci_lista(2000)
+
+"""# Diccionario
+
+Son memorias o matrices asociativas. Son indexados por llaves (keys).
+"""
+
+#diccionario = { clave1 : valor1, clave2 : valor2, ...}
+tel = { 'jack' : 4098, 'sape' : 4139}
+
+#Agregar una clave nueva
+tel['guido'] = 2147
+tel['irv'] = 4127
+tel
+
+# El valor de una clave
+tel['jack']
+
+#Borrar una key:value
+del tel['sape']
+tel
+
+#Para retornar todas las llaves, keys o claves
+list(tel)
+sorted(tel) # este también los ordena
+
+#para verificar si una key está en el diccionario
+'guido' in tel
+'jack' not in tel
+
+# otra forma de definir un diccionario, por pares de keys-value
+dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
+
+{x: x**2 for x in (2, 4, 6)}
+
+dict(sape=4139, guido=4127, jack=4098)
+
+"""# Grupos, conjuntos o sets
+
+Un conjunto es una colección desordenada sin elementos duplicados. Soportan operaciones matemáticas como unión, intersección, diferencia y diferencia simétrica.
+"""
+
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+basket
+
+a = {x for x in 'abracadabra' if x not in 'abc'}
+a
+
+# para crear un conjunto vacio se debe usar set() no {} porque crea un diccionario bacio.
+
+# ver si un elemento está en el conjunto
+'orange' in basket
+
+#Operaciones entre conjuntos
+x = set('abracadabra')
+y = set('alacazam')
+
+# ver los elementos unicos de un conjunto
+x
+
+#Diferencia entre conjuntos
+x-y #están en x pero no en y
+
+#Unión de conjuntos
+x | y
+
+#Intersección de conjuntos
+x & y
+
+#Elementos de ambos conjuntos menos los comunes entre ellos
+x ^ y
+
+"""# Ciclo `for`
+
+Ietración sobre una progresión aritmética de números, tiene la capacidad de definir el paso de iteración como la condición de parada.
+Itera sobre los elementos de una secuencia, que puede ser cadena, lista o tupla, en el orden que aparecen.
+"""
+
+for w in [1,2,3]:
+    print(w, 'hi')
+
+words = ['cat','window','defenestrate']
+for w in words:
+  print(w, len(w))
+
+for item in basket:
+  print(item)
+
+for i in range(0,3):
+  print(i)
+
+for a,b in [(1,2),(3,4)]:
+  print(a,b+a)
+
+"""# Declaración `if`
+
+Retorta un valor si que cumple una condición o otro si este no se cumple.
+
+Dentro de las condiciones podemos encontrar:
+
+`>=` mayor igual.
+
+`<=` menor igual.
+
+`==` igual.
+
+`!=` diferente.
+
+`and` Y, ambas condiciones se cumplen.
+
+`or`  O, suficiente que una se cumpla.
+"""
+
+if 3<2 :
+  print('hello')
+else:
+  print('la condición no es verdadera')
+
+age = 29
+if age<13:
+  print('you are young')
+elif age>=13 and age<18 : #else if
+  print('you are teenager')
+else:
+  print('you are adult')
+
+"""# Formateo de Cadenas
+
+cuando a una cadena queremos agregar un número y queremos que retorne una cadena. Para que el número se convierta en tipo cada se unas `%`.
+
+`%s` denota una cadena. Si dicho valor no es una cadena este automaticamente lo cambia con la función `str()`.
+
+`%d` denota un entero de base 10.
+
+`%f` un número flotante. `%.2f` indica que son dos números después de la coma, dos decimales.
+
+`%%` si se quiere incluir el `%` en el texto.
+
+`%x` números hexadecimales.
+"""
+
+import math
+
+print('The value of pi is approximately %5.3f.' % math.pi)
+
+#Otra forma de hacerlo usando str()
+nombre='Juany'
+edad=20
+"Tu nombre es " + nombre + " y tienes " + str(edad) + " años."
+
+"Tu nombre es %s" % nombre
+
+"""# Tipos de Datos
+
+### 1) Numeros
+
+Se pueden realizar operaciones con números igual que una calculadora. Las operaciones con las que trabaja son  `+`, `-`, `*`, `**`, `/`, `//` y `%`.
+"""
+
+2+2
+
+50 -5*7
+
+(60+7*9)/4
+
+8/4
+
+17//3 #descarta la parte decimal
+
+17%3 # devuelve el residuo
+
+5 ** 2 # potencia de un número
+
+5**(1/2)
+math.sqrt(5) #raíz cuadrada
