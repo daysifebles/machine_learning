@@ -57,7 +57,7 @@ x[0] #acceder a la primera lista
 
 x[0][1] #acceder a un elemento de la primera lista
 
-"""### 1) `append(x)`
+"""### `append(x)`
 
 Agregar un item al final de la lista.
 """
@@ -66,7 +66,7 @@ lista.append('x')
 lista
 #equivalente a lista[len(lista):]=['x']
 
-"""### 2) `extend(iterable)`
+"""### `extend(iterable)`
 
 Extiende la lista agregando todos los elementos que se le agregen en el argumento iterable.
 """
@@ -75,7 +75,7 @@ lista.extend([1,2])
 lista
 #equivalente a lista[len(lista):]=['x']
 
-"""### 3) `insert(i,x)`
+"""### `insert(i,x)`
 
 Inserta un item en la posición dada. El primer argumento corresponde al índice del elemento donde se va a insertar el item.
 """
@@ -84,14 +84,14 @@ lista.insert(1,'a')
 lista
 #lista.insert(len(lista),'a') es equivalente a lista.append('a')
 
-"""### 4) `remove(x)`
+"""### `remove(x)`
 Eliminia el primer item de la lista que es igual a el argumento x, y devuelve `ValueError` si no hay items iguales a dicho valor.
 """
 
 lista.remove('a') 
 lista
 
-"""### 5) `pop(i)`
+"""### `pop(i)`
 
 Elimina el item de la posición dada y devuelve dicho valor. Si no se específica la posición elimina y devuelve el último item de la lista.
 """
@@ -99,7 +99,7 @@ Elimina el item de la posición dada y devuelve dicho valor. Si no se específic
 lista.pop(2)
 lista
 
-"""### 6) `clear()`
+"""### `clear()`
 
 Elimina todos los items de la lista.
 """
@@ -108,7 +108,7 @@ lista.clear()
 lista
 #equivalente a del lista[:]
 
-"""### 7) `index(x[,start[,end]])`
+"""### `index(x[,start[,end]])`
 
 Devuelve el índice basado en cero de la lista cuyo primer valor es igual a x, devuelve un ValueError si no se encutra dicho valor. Los argumentos start y end son opcionales y se usan para limitar la busqueda en una subsecuencia de la lista.
 """
@@ -116,14 +116,14 @@ Devuelve el índice basado en cero de la lista cuyo primer valor es igual a x, d
 lista = [1,'dos',3.2,5]
 lista.index('dos')
 
-"""### 8) `count(x)`
+"""### `count(x)`
 
 Revuelve el número de veces que se encuentra el elemento x en la lista.
 """
 
 lista.count('dos')
 
-"""### 9) `sort(key=None, reverse=False)`
+"""### `sort(key=None, reverse=False)`
 
 ordena los items de la lista.
 """
@@ -132,14 +132,14 @@ lista1 = [1,5,8,9,63.2,52.1,47.2]
 lista1.sort()
 lista1
 
-"""### 10) `reverse()`
+"""### `reverse()`
 Devuelve los elementos de la lista en forma reversa.
 """
 
 lista.reverse()
 lista
 
-"""### 11) `copy()`
+"""### `copy()`
 
 Devuelve una copia superficial de la lista.
 """
@@ -147,14 +147,14 @@ Devuelve una copia superficial de la lista.
 lista2 = lista.copy()
 lista2
 
-"""### 12) `len()`
+"""### `len()`
 
 Retorna el tamaño de la lista.
 """
 
 len(lista)
 
-"""### 13) `max()` and `min()`
+"""### `max()` and `min()`
 
 Retorna el valor máximo y mínimo respectivamente de una lista númerica.
 """
@@ -163,7 +163,7 @@ max(n)
 
 min(n)
 
-"""### Ejemplo"""
+"""### Ejemplos con listas"""
 
 fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
 fruits
@@ -357,7 +357,7 @@ for a,b in [(1,2),(3,4)]:
 
 """# Declaración `if`
 
-Retorta un valor si que cumple una condición o otro si este no se cumple.
+Retorna un valor si se cumple una condición o otro si este no se cumple.
 
 Dentro de las condiciones podemos encontrar:
 
@@ -389,7 +389,7 @@ else:
 
 """# Formateo de Cadenas
 
-cuando a una cadena queremos agregar un número y queremos que retorne una cadena. Para que el número se convierta en tipo cada se unas `%`.
+Cuando a una cadena queremos agregar un número y queremos que retorne una cadena. Para que el número se convierta en tipo cada se unas `%`.
 
 `%s` denota una cadena. Si dicho valor no es una cadena este automaticamente lo cambia con la función `str()`.
 
@@ -415,7 +415,7 @@ edad=20
 
 """# Tipos de Datos
 
-### 1) Números
+## Números
 
 Se pueden realizar operaciones con números igual que una calculadora. Las operaciones con las que trabaja son  `+`, `-`, `*`, `**`, `/`, `//` y `%`.
 """
@@ -441,7 +441,7 @@ math.sqrt(5) #raíz cuadrada
 
 str(25) #convertir números en string
 
-"""### 2) Strings, cadena de carácter
+"""## Strings, cadena de carácter
 
 Se colocan entre `'...'` o `"..."`.
 """
@@ -498,7 +498,7 @@ prefix[-2:]
 
 len(prefix) #tamaño de la cadena
 
-"""### 3) float"""
+"""## float"""
 
 float(10)
 
@@ -510,7 +510,7 @@ float("     -24.45\n")
 
 #float("abc") #no se puede convertir en un flotante
 
-"""### 4) bool
+"""## bool
 
 Retorna falso si el valor que se omite es falso, y verdadero si dicho valor es verdadero
 """
@@ -546,13 +546,15 @@ not False # True
 
 """Función `type()` paa conocer que tipo de dato es el objeto que pasamos dentro de ella."""
 
-type(10.0)
-type(10)
-type('a')
+type(10.0) # Float
+
+type(10) # Entero
+
+type('a') # Carácter
 
 """# Declaración `pass`
 
-No hace nada, se usa cuando la declaración es requiere sistematicamente pero el programa no requiere una acción.
+No hace nada, se usa cuando la declaración se requiere sistematicamente pero el programa no requiere una acción.
 """
 
 for letter in 'Python': 
@@ -561,7 +563,7 @@ for letter in 'Python':
       print('This is pass block')
    print('Current Letter :', letter)
 
-"""# Para saber la versón de Python"""
+"""# Para saber la versión de Python"""
 
 #Para saber la versión de Python que usas
 import sys
