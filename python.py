@@ -198,6 +198,43 @@ stack.pop()
 stack.pop()
 stack
 
+"""## Compresión de Listas
+
+Proporcionan un camino conciso para crear listas. Los elementos de la lista son el resultado de alguna operación aplicada de otra secuencia o iteración, o para crear una secuencia de esos elementos que satisfacen una cierta condición.
+"""
+
+cuadrados = []
+for x in range(10):
+  cuadrados.append(x**2)
+
+cuadrados
+
+cuadrado = list((map(lambda x: x**2, range(10))))
+cuadrado
+
+cuad =  [x**2 for x in range(10)]
+cuad
+
+[(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+
+vec = [-4, -2, 0, 2, 4]
+[x*2 for x in vec]
+
+"""# Expresión `lambda`
+
+Puede tener cualquier número de argumentos, pero solamente puede tener una expresión.
+
+`lambda argumentos : expresión`
+"""
+
+x = lambda a : a+10
+x(5)
+
+y = lambda a, b : a * b
+y(2,5)
+
+(lambda x: x + 1)(2)
+
 """# Funciones
 
 Como ejemplo se creara la función de Fibonacci, recordemos que es una serie que comienza con 0 y 1 y los números siguientes son la suma de los dos anteriores.
@@ -378,7 +415,7 @@ edad=20
 
 """# Tipos de Datos
 
-### 1) Numeros
+### 1) Números
 
 Se pueden realizar operaciones con números igual que una calculadora. Las operaciones con las que trabaja son  `+`, `-`, `*`, `**`, `/`, `//` y `%`.
 """
@@ -399,3 +436,133 @@ Se pueden realizar operaciones con números igual que una calculadora. Las opera
 
 5**(1/2)
 math.sqrt(5) #raíz cuadrada
+
+3+5J #números complejos
+
+str(25) #convertir números en string
+
+"""### 2) Strings, cadena de carácter
+
+Se colocan entre `'...'` o `"..."`.
+"""
+
+'spam eggs'
+
+'doesn\'t' # para imprimir '
+
+"doesn't"
+
+'"Yes," they said.'
+
+"\"Yes,\" they said." #para imprimir las comillas
+
+'"Isn\'t," they said.'
+
+#Usando la función print() para mostrar caracteres
+print('"Isn\'t," they said.')
+
+s = 'spam eggs\n hola' #\n salto de línea
+s
+print(s)
+
+print('C:\some\name') # muestra el salto de linea de \n
+print(r'C:\some\name') #no toma en cuenta el salto de línea
+
+#Para mostrar multiples líneas con print(), se usa """... """ o '''... '''
+print("""\
+Usage: thingy [OPTIONS]
+     -h                        Display this usage message
+     -H hostname               Hostname to connect to
+""")
+
+3 * 'un' + 'ium' #se concatena con + y se replica con *
+
+'Py' 'thon' # se concatenan
+
+#Para concatenar texto guardado en variables se debe hacer con +
+prefix = 'Pyt'
+prefix + 'hon'
+
+#acceder a los elementos de una cadena
+prefix[0]
+prefix[1]
+prefix[2]
+prefix[-1] #último carácter
+prefix[0:2] #no toma la última posición
+prefix[:2]
+prefix[2:]
+prefix[-2:]
+
+# Las cadenas de caracteres en python no son inmutables, es decir no se pueden cambiar.
+#prefix[0] = 'K'
+
+len(prefix) #tamaño de la cadena
+
+"""### 3) float"""
+
+float(10)
+
+float(11.22)
+
+float('-13.33') #convierte un carácter en un flotante
+
+float("     -24.45\n")
+
+#float("abc") #no se puede convertir en un flotante
+
+"""### 4) bool
+
+Retorna falso si el valor que se omite es falso, y verdadero si dicho valor es verdadero
+"""
+
+#Los elementos nulos o vacíos se condideran False
+bool(0)
+bool(0.0)
+bool("")
+bool([])
+bool({})
+#El resto se consideran True
+bool(25)
+bool('abc')
+bool((1,2,3))
+bool([27, "octubre", 1997])
+
+#Operadores lógicos
+## and
+True and True #True
+True and False #False
+False and True #False
+False and False #True
+## or (sólo puede darse una de las dos alternativas)
+True or True #True
+True or False #True
+False or True #True
+False or False #False
+## Negación
+not True # False
+not False # True
+
+4 == 3 + 1  and 3 + 1 > 2
+
+"""Función `type()` paa conocer que tipo de dato es el objeto que pasamos dentro de ella."""
+
+type(10.0)
+type(10)
+type('a')
+
+"""# Declaración `pass`
+
+No hace nada, se usa cuando la declaración es requiere sistematicamente pero el programa no requiere una acción.
+"""
+
+for letter in 'Python': 
+   if letter == 'h':
+      pass
+      print('This is pass block')
+   print('Current Letter :', letter)
+
+"""# Para saber la versón de Python"""
+
+#Para saber la versión de Python que usas
+import sys
+print(sys.version)
