@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1xzqvWDyz0Rvq6qafFCTIoU6a40a_sk-w
 
 # MATPLOTLIB
+
+Para visualización de datos.
 """
 
 import matplotlib.pyplot as plt
@@ -300,7 +302,10 @@ plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25,
 
 plt.show()
 
-"""# SEABORN"""
+"""# SEABORN
+
+Para mapas de calor.
+"""
 
 import numpy as np
 import seaborn as sns
@@ -308,20 +313,59 @@ import seaborn as sns
 np.random.seed(0) #semilla
 
 sns.set()
-uniform_data = np.random.rand(10, 12)
-ax = sns.heatmap(uniform_data)
 
-ax = sns.heatmap(uniform_data, vmin=0, vmax=1)
+#La función random.rand(d0,d1,d2,...) da un array de números aleatorios uniformes en [0,1) 
+data_uniforme = np.random.rand(10, 12) #como se le dan dos valores es una matriz de datos
 
-normal_data = np.random.randn(10, 12)
-ax = sns.heatmap(normal_data, center=0)
+ax = sns.heatmap(uniform_data) #Crea el mapa de calor con los datos uniformes
 
-flights = sns.load_dataset("flights")
+# Para el sguiente gráfico vamos a variar los parámetros vmin y vmax
+# estos valores son para fijar el mapa de colores, en caso contrario se infiere de los datos
+# y otros argumentos de palabras claves.
+ax = sns.heatmap(data_uniforme, vmin=0, vmax=1)
+
+datos_normales = np.random.randn(10, 12) #datos aleatorios con distribución normal
+#El parámetro center es el centro del mapa de colores cuando se tienen datos divergentes.
+ax = sns.heatmap(datos_normales, center=0)
+
+flights = sns.load_dataset("flights") #Cargar datos de un repositorio online
+# estos datos contine tres columnas o variables, year month y passengers.
+flights.head()
+
 flights = flights.pivot("month", "year", "passengers")
+
 ax = sns.heatmap(flights)
 
 ax = sns.heatmap(flights, annot=True, fmt="d")
+# annot si es verdadero se muestra el valor en cada celda.
 
 ax = sns.heatmap(flights, linewidths=.5)
+#linewidths agrega una línea con el grosor que se le específique entre las celdas.
 
 ax = sns.heatmap(flights, cmap="YlGnBu")
+#cmap valores del espacio de colores
+
+ax = sns.heatmap(flights, center=flights.loc["January", 1955])
+# cuando se especifica el centro del mapa de colores.
+
+data = np.random.randn(50, 20)
+ax = sns.heatmap(data, xticklabels=2, yticklabels=False)
+#Los valores que corresponden a los ejes, el 2 en x significa que va colocar los valores
+#cada dos dígitos.
+
+ax = sns.heatmap(flights, cbar=False)
+#cbar como False no muestra la barra de colores a la derecha
+
+grid_kws = {"height_ratios": (.9, .05), "hspace": .3}
+f, (ax, cbar_ax) = plt.subplots(2, gridspec_kw=grid_kws)
+ax = sns.heatmap(flights, ax=ax,
+                 cbar_ax=cbar_ax,
+                 cbar_kws={"orientation": "horizontal"})
+
+#gráficar una parte de la matriz
+corr = np.corrcoef(np.random.randn(10, 200))
+mask = np.zeros_like(corr) #Retorna un array de ceros con la misma dimension de lo que se le apsa.
+mask[np.triu_indices_from(mask)] = True
+with sns.axes_style("white"):
+    f, ax = plt.subplots(figsize=(7, 5))
+    ax = sns.heatmap(corr, mask=mask, vmax=.3, square=True)
